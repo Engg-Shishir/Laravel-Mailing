@@ -10,15 +10,19 @@ use Illuminate\Queue\SerializesModels;
 class LaravelMail extends Mailable
 {
     use Queueable, SerializesModels;
-
+    public  $accessData;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+
+    // Recived data from mailController
+    public function __construct($data)
     {
-        //
+        // dd($data);
+        $this->accessData = $data;
+    
     }
 
     /**
@@ -28,7 +32,7 @@ class LaravelMail extends Mailable
      */
     public function build()
     {
-        return $this->view('email.laramail')
+        return $this->view('email.profilecard',['data'=>$this->accessData])
         ->subject("laravel Mailing System");
     }
 }
