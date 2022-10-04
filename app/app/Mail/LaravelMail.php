@@ -28,6 +28,7 @@ class LaravelMail extends Mailable
      */
     public function build()
     {
-        return $this->view('email.laramail');
+        return $this->view('email.laramail')
+        ->subject("laravel Mailing System");
     }
 }
