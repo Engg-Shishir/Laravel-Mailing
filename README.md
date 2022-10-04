@@ -20,5 +20,5 @@ MAIL_USERNAME = shishirbhuiyan83@gmail.com
 MAIL_PASSWORD = 
 MAIL_ENCRYPTION = ssl
 MAIL_FORM_ADDRESS = shishirbhuiyan83@gmail.com
-MAIL_FORM_NAME = "$(APP_NAME)"
+MAIL_FORM_NAME = MSB Mail System
 ```
