@@ -19,7 +19,7 @@ class UsersSeederForMailingFunctionTest extends Seeder
     {
         $faker = Faker::create();
         foreach (range(1,10) as $index) {
-            DB::table('user')->insert([
+            DB::table('users')->insert([
                 'name' => $faker->name,
                 'email' => $faker->email,
                 'address' => $faker->address
