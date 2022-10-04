@@ -3,6 +3,8 @@
 ><h1 style="color:red; text-align:center; font-weight:bold;">Send Mail</h1>
 
 
+> `php artisan make:controller MailController`
+
 > `php artisan make:mail TestMail`
 
 > `php artisan vendor:publish` select 12 0r something
