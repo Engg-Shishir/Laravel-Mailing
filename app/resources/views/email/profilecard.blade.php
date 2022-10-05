@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
+	<title>User Profile</title>
 	<style>
 
 body {
@@ -135,12 +135,8 @@ footer a {
 		<h3> {{ $data['name'] }} </h3>
 		<p> {{ $data['email'] }} </p>
 		<div class="buttons">
-			<button class="primary">
-				Message
-			</button>
-			<button class="primary ghost">
-				Following
-			</button>
+			<a href="{{ route('cardsend') }}"><button class="primary ghost" style="cursor: pointer;">Download</button></a>
+			
 		</div>
 		<div class="skills">
 			<h6>Skills</h6>

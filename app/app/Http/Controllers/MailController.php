@@ -9,7 +9,20 @@ use Illuminate\Support\Facades\Mail;
 
 class MailController extends Controller
 {
-    public function sendEmail()
+    public function viewcard()
+    {
+      $user = User::where('name','Shishir Bhuiyan')->first();
+
+      $data = [
+        'name' => $user->name,
+        'email' => $user->email,
+        'address' => $user->address
+      ];
+    
+       // Before send mail, view your card tamplate
+       return new LaravelMail($data);
+    }
+    public function sendcard()
     {
       $user = User::where('name','Shishir Bhuiyan')->first();
 
@@ -20,7 +33,6 @@ class MailController extends Controller
       ];
     
        Mail::to('shishir16@cse.pstu.ac.bd')->send(new LaravelMail($data));
-    
-       return " Email Sent";
+       return redirect()->route('cardview');
     }
 }
