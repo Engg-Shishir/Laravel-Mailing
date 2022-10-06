@@ -32,7 +32,7 @@ class LaravelMail extends Mailable
      */
     public function build()
     {
-        return $this->view('email.profilecard',['data'=>$this->accessData])
+        return $this->view('email.cv',['data'=>$this->accessData])
         ->subject("laravel Mailing System");
     }
 }

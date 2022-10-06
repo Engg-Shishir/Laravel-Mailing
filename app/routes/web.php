@@ -19,5 +19,6 @@ Route::get('/', function () {
 
 
 
-Route::get('/card', [MailController::class, 'viewcard'])->name('cardview');;
+Route::get('/card', [MailController::class, 'viewcard'])->name('cardview');
 Route::get('/send', [MailController::class, 'sendcard'])->name('cardsend');
+Route::get('/sendfile', [MailController::class, 'sendfile'])->name('sendfile');
