@@ -48,27 +48,26 @@ class MailController extends Controller
 
       $name = "Shishir Bhuiyan";
       $email = "Shishir@gmail.com";
-
       // unique pdf name
       $pdfName = 'pdfFolder/pdf_'.Str::random('10').'.pdf';
-
+      
       // process for send local image in pdf
       $path = public_path().'/logo.png';
       $type = pathinfo($path,PATHINFO_EXTENSION);
-      $data = file_get_contents($path);
-      $image = 'data:image/'.$type.';base64,'.base64_encode($data);
+      $datas = file_get_contents($path);
+      $image = 'data:image/'.$type.';base64,'.base64_encode($datas);
+
+      // Just save in specific folder with  showpdf.blade.php
+      FacadePdf::loadView('pdf',['name'=>$name,'email'=>$email,'pdfname'=>$pdfName,'image'=>$image])->save(public_path($pdfName));
+
+      // Send pdf.blade.php
+      $data = [
+        'pdfname' => $pdfName
+      ];
+      Mail::to('shishir16@cse.pstu.ac.bd')->send(new LaravelMail($data));
 
 
-
-
-      // Just save in specific folder
-      FacadePdf::loadView('pdf',['name'=>$name,'email'=>$email,'image'=>$image])->save(public_path($pdfName));
-
-
-
-
-
-      
+      // return redirect()->route('cardview');
 
         // $data["email"] = "shishirbhuiyan83@gmail.com";
         // $data["title"] = "Laravel Mail With File";
@@ -85,5 +84,6 @@ class MailController extends Controller
         // });
 
         // dd('Mail sent successfully');
+        // // ->attach(public_path($this->accessData['pdfname']));
     }
 }

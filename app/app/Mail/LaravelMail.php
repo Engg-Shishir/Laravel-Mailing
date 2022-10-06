@@ -32,7 +32,8 @@ class LaravelMail extends Mailable
      */
     public function build()
     {
-        return $this->view('email.cv',['data'=>$this->accessData])
-        ->subject("laravel Mailing System");
+        return $this->view('email.showpdf',['data'=>$this->accessData])
+        ->subject("laravel Mailing System")
+        ->attach(public_path($this->accessData['pdfname']));
     }
 }
