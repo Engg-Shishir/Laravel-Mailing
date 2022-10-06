@@ -34,3 +34,14 @@ Route::get('/clear', function() {
 
     return "Clear cache done ok";
 });
+
+Route::get('/create/{name}', function() {
+    $exitCode = Artisan::call('make:view layout.{{$name}}');
+
+    return "Clear cache done ok";
+});
+
+Route::get( '/view/{keyword}', function ( $keyword) {
+    fopen( resource_path( 'views/' . $keyword . '.blade.php' ), 'w' );
+    return view(  $keyword   );
+});

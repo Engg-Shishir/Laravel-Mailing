@@ -74,15 +74,30 @@ class MailController extends Controller
         // ];
 
 
-        $data["email"] = "shishirbhuiyan83@gmail.com";
-        $data["title"] = "Laravel Mail With File";
-        $data["body"] = "Mailing file demo";
-        $data["image"] = $image;
-
+        $pdfshowingdata["email"] = "shishirbhuiyan83@gmail.com";
+        $pdfshowingdata["title"] = "Laravel Mail With File";
+        $pdfshowingdata["body"] = "Mailing file demo";
+        $pdfshowingdata["pdfimage"] = $image;
+        $pdfshowingdata["name"] = "";
         // This is pdf
         $pdf = app('dompdf.wrapper');
-        $pdf->loadView('pdf',$data)->setPaper('a4', 'portrait');
+        $pdf->loadView('pdf',$pdfshowingdata)->setPaper('a4', 'portrait');
 
+
+
+
+        $myPublicFolder = public_path();
+        $savePath = $myPublicFolder."\logo.png";
+
+        $data = [
+          'name' => "",        
+          'email' => "shishirbhuiyan83@gmail.com",
+          'title' => "Laravel Mail With File",
+          'viewimage' => $savePath
+        ];
+
+        // $img_url = env('APP_URL')."/img/stuvi-logo.png";
+    
 
         // This is textpart
         Mail::send('pdf', $data, function($message)use($data, $pdf) {
