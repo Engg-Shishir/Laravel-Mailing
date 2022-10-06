@@ -132,7 +132,7 @@
 									
 									{{-- <img src="https://i.postimg.cc/ZY1BkPsB/logo.png" style="width: 100%; max-width: 300px" /> --}}
 
-								   <img src="https://i.postimg.cc/ZY1BkPsB/logo.png" style="width: 100%; max-width: 300px" />
+								   {{-- <img src="https://i.postimg.cc/ZY1BkPsB/logo.png" style="width: 100%; max-width: 300px" /> --}}
 								</td>
 
 								<td>

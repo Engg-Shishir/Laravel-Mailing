@@ -57,33 +57,40 @@ class MailController extends Controller
       $datas = file_get_contents($path);
       $image = 'data:image/'.$type.';base64,'.base64_encode($datas);
 
-      // Just save in specific folder with  showpdf.blade.php
-      FacadePdf::loadView('pdf',['name'=>$name,'email'=>$email,'pdfname'=>$pdfName,'image'=>$image])->save(public_path($pdfName));
 
-      // Send pdf.blade.php
-      $data = [
-        'pdfname' => $pdfName
-      ];
-      Mail::to('shishir16@cse.pstu.ac.bd')->send(new LaravelMail($data));
+      //###########################################################################
+       # // Just save in specific folder with  showpdf.blade.php
+       # // FacadePdf::loadView('pdf',['name'=>$name,'email'=>$email,'pdfname'=>$pdfName,'image'=>$image])->save(public_path($pdfName));
 
+       # //Send pdf.blade.php
+       # // $data = [
+       # //   'pdfname' => $pdfName
+       # // ];
+       # // Mail::to('shishir16@cse.pstu.ac.bd')->send(new LaravelMail($data));
+      //###########################################################################
 
-      // return redirect()->route('cardview');
-
-        // $data["email"] = "shishirbhuiyan83@gmail.com";
-        // $data["title"] = "Laravel Mail With File";
-        // $data["body"] = "Mailing file demo";
-
-        // $pdf = app('dompdf.wrapper');
-        // $pdf->loadView('email.cv',$data)->setPaper('a4', 'portrait');
+        // $data = [
+        //   'name' => "Shishir Nhuiyan"
+        // ];
 
 
-        // Mail::send('email.cv', $data, function($message)use($data, $pdf) {
-        //     $message->to($data["email"])
-        //             ->subject($data["title"])
-        //             ->attachData($pdf->output(), "files.pdf");
-        // });
+        $data["email"] = "shishirbhuiyan83@gmail.com";
+        $data["title"] = "Laravel Mail With File";
+        $data["body"] = "Mailing file demo";
+        $data["image"] = $image;
 
-        // dd('Mail sent successfully');
-        // // ->attach(public_path($this->accessData['pdfname']));
+        // This is pdf
+        $pdf = app('dompdf.wrapper');
+        $pdf->loadView('pdf',$data)->setPaper('a4', 'portrait');
+
+
+        // This is textpart
+        Mail::send('pdf', $data, function($message)use($data, $pdf) {
+            $message->to($data["email"])
+                    ->subject($data["title"])
+                    ->attachData($pdf->output(), "invoice.pdf");
+        });
+
+        dd('Mail sent successfully');
     }
 }
